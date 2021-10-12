@@ -5,26 +5,16 @@ const dotenv = require('dotenv');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const cors = require('cors');
-const usersRoute = require('./routes/users');
-const authRoute = require('./routes/auth');
+// const usersRoute = require('./routes/users');
+// const authRoute = require('./routes/auth');
+const bookRoute = require('./routes/book');
 
-const server = require('http').createServer(app),
-  io = require('socket.io')(server, {
-    cors: {
-      origin: '*',
-      methods: ['GET', 'POST'],
-    },
-  });
+const server = require('http').createServer(app);
 
 dotenv.config();
 
-let mongo = '';
-if (process.env.NODE_ENV === 'production') {
-  mongo = process.env.MONGO_URL;
-} else {
-  mongo = process.env.MONGO_URL;
-}
-
+const mongo =
+  'mongodb+srv://samardeep:samardeep@cluster0.xf1vz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 //Connecting Database
 mongoose.connect(
   mongo,
@@ -49,8 +39,9 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan('common'));
 
-app.use('/api/users', usersRoute);
-app.use('/api/auth', authRoute);
+// app.use('/api/users', usersRoute);
+// app.use('/api/auth', authRoute);
+app.use('/api/book', bookRoute);
 
 // Serve static assets if in production
 // if (process.env.NODE_ENV === "production") {
