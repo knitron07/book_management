@@ -7,8 +7,9 @@ router.post('/addbook', async (req, res) => {
     const newBook = new Books({
       name: req.body.name,
       author: req.body.author,
-      publishDate: req.body.publishDate,
+      publishYear: req.body.publishYear,
       coverPicture: req.body.coverPicture,
+      aboutBook: req.body.aboutBook,
       borrowers: req.body.borrowers,
       copies: req.body.copies,
     });

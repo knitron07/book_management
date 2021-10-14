@@ -12,15 +12,18 @@ const BooksSchema = new mongoose.Schema(
       require: true,
       min: 3,
     },
-    publishDate: {
-      type: Date,
+    publishYear: {
+      type: Number,
       require: true,
     },
     coverPicture: {
       type: String,
       default: '',
     },
-
+    aboutBook: {
+      type: String,
+      default: '',
+    },
     borrowers: {
       type: Array,
       default: [],

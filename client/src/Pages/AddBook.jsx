@@ -28,6 +28,7 @@ function AddBook() {
             <Stack spacing={2}>
               <TextField
                 id='outlined-basic'
+                name='name'
                 label='Name Of The Book'
                 type='text'
                 variant='outlined'
@@ -35,12 +36,14 @@ function AddBook() {
               />
               <TextField
                 id='outlined-basic'
+                name='author'
                 label='Name Of Author'
                 type='text'
                 variant='outlined'
               />
               <TextField
                 id='outlined-number'
+                name='publishDate'
                 label='Year of Publish'
                 type='number'
                 InputLabelProps={{
@@ -50,7 +53,8 @@ function AddBook() {
 
               <TextField
                 id='outlined-number'
-                label='Number'
+                name='copies'
+                label='Number of copies avilable'
                 type='number'
                 InputLabelProps={{
                   shrink: true,
@@ -58,6 +62,7 @@ function AddBook() {
               />
               <TextField
                 id='outlined-multiline-static'
+                name='aboutBook'
                 label='About the book'
                 multiline
                 rows={3}
