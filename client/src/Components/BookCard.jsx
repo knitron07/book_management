@@ -1,4 +1,5 @@
 import React from 'react';
+import '../Styles/Components/_BookCard.scss';
 import {
   Card,
   CardHeader,
@@ -6,8 +7,11 @@ import {
   CardContent,
   Avatar,
   Typography,
+  CardActions,
+  IconButton,
 } from '@mui/material';
-
+import DeleteIcon from '@mui/icons-material/Delete';
+import FileUploadIcon from '@mui/icons-material/FileUpload';
 import { red } from '@mui/material/colors';
 
 export default function BookCard() {
@@ -35,6 +39,17 @@ export default function BookCard() {
           mussels, if you like.
         </Typography>
       </CardContent>
+      <CardActions disableSpacing>
+        <IconButton aria-label='add to favorites'>
+          <DeleteIcon color='error' fontSize='large' />
+        </IconButton>
+        <IconButton aria-label='add to favorites'>
+          <DeleteIcon color='error' fontSize='large' />
+        </IconButton>
+        <IconButton aria-label='add to favorites'>
+          <FileUploadIcon color='sucess' fontSize='large' />
+        </IconButton>
+      </CardActions>
     </Card>
   );
 }

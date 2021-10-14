@@ -1,11 +1,11 @@
-.LoginContainer{
+.addBookConatiner{
+    margin: 0;
     width: 100%;
     min-height: 100vh;
     box-sizing: border-box;
     padding: 3rem 0 3rem;
     background-color: #f6f7f9;
-
-    .LoginContainerWrapper{
+    .addBookWrapper{
         width: 60%;
         margin: 0 auto;
         display: flex;
@@ -15,12 +15,15 @@
         border-radius: 20px;
         padding: 30px;
         box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+
         .css-1p5q5e5-MuiStack-root{
             width: 100%;
-
-           
         }
-
+        .addButton
+        {
+            display: flex;
+            justify-content: end;
+        }
         
 
 
