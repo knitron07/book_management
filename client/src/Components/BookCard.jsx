@@ -47,7 +47,7 @@ export default function BookCard() {
           <DeleteIcon color='error' fontSize='large' />
         </IconButton>
         <IconButton aria-label='add to favorites'>
-          <FileUploadIcon color='sucess' fontSize='large' />
+          <FileUploadIcon color='success' fontSize='large' />
         </IconButton>
       </CardActions>
     </Card>

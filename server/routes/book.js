@@ -1,27 +1,6 @@
 const router = require('express').Router();
 const Books = require('../models/Books');
 
-// router.post('/register', async (req, res) => {
-//   try {
-//     // generating hashed password
-//     const salt = await bcrypt.genSalt(10);
-//     const hashedPassword = await bcrypt.hash(req.body.password, salt);
-
-//     //creating new user
-//     const newUser = new Users({
-//       username: req.body.username,
-//       email: req.body.email,
-//       password: hashedPassword,
-//     });
-
-//     // saving user and returning response
-//     const user = await newUser.save();
-//     res.status(200).json(user);
-//   } catch (error) {
-//     res.status(500).json(error);
-//   }
-// });
-
 //creating new Book
 router.post('/addbook', async (req, res) => {
   try {
@@ -63,7 +42,7 @@ router.put('/updatebook/:bookid', async (req, res) => {
   }
 });
 
-//get book by name
+//get book by name and author
 router.get('/:type/:typevalue', async (req, res) => {
   try {
     let books;

@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Box,
   Drawer,
@@ -16,6 +17,12 @@ import {
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 
+const BookOptions = [
+  { buttonName: 'View All', link: '/' },
+  { buttonName: 'Add', link: '/addbook' },
+  { buttonName: 'Remove', link: '/removebook' },
+  { buttonName: 'Update', link: '/updatebook' },
+];
 export default function SideBar() {
   return (
     <Box sx={{ display: 'flex' }}>
@@ -47,13 +54,15 @@ export default function SideBar() {
             <Typography variant='h6' noWrap component='div'>
               Books Section
             </Typography>
-            {['View All', 'Add', 'Remove', 'Update'].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItem>
+            {BookOptions.map((text, index) => (
+              <Link to={text.link} style={{ textDecoration: 'none' }}>
+                <ListItem button key={text.buttonName}>
+                  <ListItemIcon>
+                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  </ListItemIcon>
+                  <ListItemText primary={text.buttonName} />
+                </ListItem>
+              </Link>
             ))}
           </List>
           <Divider />
