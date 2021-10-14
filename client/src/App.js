@@ -4,8 +4,8 @@ import Login from '../src/Pages/Login';
 import Register from './Pages/Register';
 import DashBoard from '../src/Pages/DashBoard';
 import AddBook from './Pages/AddBook';
-import SearchFields from './Components/SearchFields';
-import RemoveBook from './Pages/RemoveBook';
+
+import SearchBook from './Pages/SearchBook';
 import UpdateBook from './Pages/UpdateBook';
 function App() {
   return (
@@ -13,11 +13,11 @@ function App() {
       <Router>
         <Switch>
           {/* <Route exact path='/' component={Login} />
-          <Route path='/register' component={Register} />
-          <Route path='/dashboard' component={DashBoard} />
-          <Route path='/updatebook' component={UpdateBook} />*/}
-          <Route path='/removebook' component={RemoveBook} />
-          <Route exact path='/' component={AddBook} />
+          <Route path='/register' component={Register} /> */}
+          <Route exact path='/' component={DashBoard} />
+          <Route path='/updatebook/:bookid' component={UpdateBook} />
+          <Route path='/searchbook' component={SearchBook} />
+          <Route path='/addbook' component={AddBook} />
         </Switch>
       </Router>
     </div>

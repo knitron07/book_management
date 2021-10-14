@@ -17,7 +17,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import BookCatalogue from './BookCatalogue';
 import { useEffect } from 'react';
 
-function SearchFields() {
+function SearchFields({ action }) {
   const [search, setSearch] = useState(false);
   const [allBooks, setAllBooks] = useState([]);
   const [allAuthor, setAllAuthor] = useState([]);
@@ -76,7 +76,7 @@ function SearchFields() {
     const fetchAuthor = async () => {
       try {
         const res = await axios.get('/book');
-        console.log(res.data);
+
         let BooksData = [];
         BooksData = res.data;
         setAllBooks(BooksData);
@@ -185,7 +185,7 @@ function SearchFields() {
           </div>
         </div>
       ) : (
-        <BookCatalogue allBooks={allBooks} />
+        <BookCatalogue allBooks={allBooks} setAllBook={setAllBooks} />
       )}
     </Box>
   );

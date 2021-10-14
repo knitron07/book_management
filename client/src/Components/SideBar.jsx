@@ -20,8 +20,7 @@ import MailIcon from '@mui/icons-material/Mail';
 const BookOptions = [
   { buttonName: 'View All', link: '/' },
   { buttonName: 'Add', link: '/addbook' },
-  { buttonName: 'Remove', link: '/removebook' },
-  { buttonName: 'Update', link: '/updatebook' },
+  { buttonName: 'search', link: '/searchbook' },
 ];
 export default function SideBar() {
   return (

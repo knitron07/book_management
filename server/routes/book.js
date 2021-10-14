@@ -44,15 +44,11 @@ router.put('/updatebook/:bookid', async (req, res) => {
 });
 
 //get book by name and author
-router.get('/:type/:typevalue', async (req, res) => {
+router.get('/book/:bookid', async (req, res) => {
   try {
     let books;
-    if (req.params.type === 'name')
-      books = await Books.find({ name: req.params.typevalue });
-    else if (req.params.type === 'author')
-      books = await Books.find({ author: req.params.typevalue });
-    else res.status(200).json('invalid api');
-    res.status(200).json(books);
+    const book = await Books.findByIdAndUpdate(req.params.bookid);
+    res.status(200).json(book);
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
