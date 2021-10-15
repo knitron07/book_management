@@ -73,7 +73,7 @@ export default function BookFields({ book }) {
         </Typography>
         <Stack spacing={2}>
           <TextField
-            id='outlined-basic'
+            id='outlined-basic-required'
             name='name'
             value={bookData.name}
             label='Name Of The Book'
@@ -81,15 +81,17 @@ export default function BookFields({ book }) {
             variant='outlined'
             onChange={handleChange}
             fullWidth={true}
+            required
           />
           <TextField
-            id='outlined-basic'
+            id='outlined-basic-required'
             name='author'
             value={bookData.author}
             label='Name Of Author'
             type='text'
             variant='outlined'
             onChange={handleChange}
+            required
           />
 
           <FormControl fullWidth>
@@ -97,34 +99,37 @@ export default function BookFields({ book }) {
               Year of Publish
             </InputLabel>
             <Select
-              labelId='demo-simple-select-label'
+              labelId='demo-simple-select-label-required'
               id='demo-simple-select'
               name='publishYear'
               value={bookData.publishYear}
               label='Year of Publish'
               onChange={handleChange}
               defaultValue={bookData.publishYear}
+              required
             >
               {yearOption}
             </Select>
           </FormControl>
 
           <TextField
-            id='outlined-number'
+            id='outlined-number-required'
             name='copies'
             value={bookData.copies}
             label='Number of copies avilable'
             type='number'
             onChange={handleChange}
+            required
           />
           <TextField
-            id='outlined-multiline'
+            id='outlined-multiline-required'
             name='aboutBook'
             value={bookData.aboutBook}
             label='About the book'
             onChange={handleChange}
             multiline
             rows={3}
+            required
           />
           <div className='addButton'>
             {!book ? (

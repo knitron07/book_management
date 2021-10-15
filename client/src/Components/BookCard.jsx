@@ -43,6 +43,7 @@ export default function BookCard({ book, setAllBook, allBooks }) {
           AllBook.push(singleBook);
         }
       });
+      console.log(AllBook);
       setAllBook(AllBook);
     } catch (error) {
       console.log(error);
@@ -50,12 +51,12 @@ export default function BookCard({ book, setAllBook, allBooks }) {
   };
   return (
     <div className={numberOfCopies <= 0 ? faid : ''}>
-      <Card sx={{ maxWidth: 340 }}>
+      <Card sx={{ maxWidth: 350 }}>
         <CardHeader title={book?.name} subheader={book?.author} />
         <CardMedia
           component='img'
           height='194'
-          image='/static/images/cards/paella.jpg'
+          image='https://edit.org/images/cat/book-covers-big-2019101610.jpg'
           alt='Paella dish'
         />
         <CardContent>

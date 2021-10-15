@@ -27,7 +27,7 @@ export default function DashBoard() {
       <SideBar />
       <Box component='main' sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
-        <BookCatalogue allBooks={allBooks} />
+        <BookCatalogue allBooks={allBooks} setAllBook={setAllBooks} />
       </Box>
     </Box>
   );
