@@ -25,7 +25,7 @@ const faid = {
 
 export default function BookCard({ book, setAllBook, allBooks }) {
   const nBuyer = book?.borrowers.length;
-  const { user, isFetching, error, dispatch } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [numberOfCopies, setNumberOfCopies] = useState(book.copies - nBuyer);
   const handlePurchase = async () => {
     setNumberOfCopies(--numberOfCopies);

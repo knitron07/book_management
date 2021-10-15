@@ -7,7 +7,7 @@ import axios from 'axios';
 
 function UpdateBook() {
   let { bookid } = useParams();
-  const [bookData, setBookData] = useState({});
+  const [bookData, setBookData] = useState(null);
   useEffect(() => {
     const fetchBookData = async () => {
       try {
@@ -21,7 +21,7 @@ function UpdateBook() {
     };
 
     fetchBookData();
-  }, [bookid, bookData]);
+  }, [bookid]);
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -29,7 +29,7 @@ function UpdateBook() {
 
       <Box component='main' sx={{ flexGrow: 1, p: 0 }}>
         <Toolbar />
-        <BookFields book={bookData} />
+        {bookData && <BookFields book={bookData} />}
       </Box>
     </Box>
   );

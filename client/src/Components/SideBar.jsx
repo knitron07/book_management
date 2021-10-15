@@ -14,12 +14,12 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@mui/material';
-
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import PersonIcon from '@mui/icons-material/Person';
 import PersonOffIcon from '@mui/icons-material/PersonOff';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
+import axios from 'axios';
 
 const BookOptions = [
   { buttonName: 'View All', link: '/' },
@@ -27,8 +27,11 @@ const BookOptions = [
 ];
 
 export default function SideBar() {
-  const { user, isFetching, error, dispatch } = useContext(AuthContext);
-  const handleDelete = () => {};
+  const { user } = useContext(AuthContext);
+  const handleDelete = async () => {
+    await axios.delete(`/users/deleteaccount/${user._id}`);
+    localStorage.removeItem('user');
+  };
 
   return (
     <Box sx={{ display: 'flex' }}>
