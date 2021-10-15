@@ -17,7 +17,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import BookCatalogue from './BookCatalogue';
 import { useEffect } from 'react';
 
-function SearchFields({ action }) {
+function SearchFields() {
   const [search, setSearch] = useState(false);
   const [allBooks, setAllBooks] = useState([]);
   const [allAuthor, setAllAuthor] = useState([]);
@@ -35,7 +35,7 @@ function SearchFields({ action }) {
           AllTitle.push(singleBook.name);
       }
     });
-    console.log(AllTitle);
+
     setAllTitle(AllTitle);
     setAllBooks(BookData);
   };
@@ -48,8 +48,8 @@ function SearchFields({ action }) {
     AllBooks.forEach((singleBook) => {
       if (singleBook.name === event.target.value) {
         BookData.push(singleBook);
-        !AllPublish.some((x) => x === singleBook.publishDate) &&
-          AllPublish.push(singleBook.publishDate);
+        !AllPublish.some((x) => x === singleBook.publishYear) &&
+          AllPublish.push(singleBook.publishYear);
       }
     });
     setAllPublish(AllPublish);
@@ -91,8 +91,8 @@ function SearchFields({ action }) {
           !AllTitle.some((x) => x === singleBook.name) &&
             AllTitle.push(singleBook.name);
 
-          !AllPublish.some((x) => x === singleBook.publishDate) &&
-            AllPublish.push(singleBook.publishDate);
+          !AllPublish.some((x) => x === singleBook.publishYear) &&
+            AllPublish.push(singleBook.publishYear);
         });
         setAllAuthor(AuthorName);
         setAllTitle(AllTitle);

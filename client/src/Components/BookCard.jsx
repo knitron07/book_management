@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import '../Styles/Components/_BookCard.scss';
 import {
@@ -17,12 +17,15 @@ import FileUploadIcon from '@mui/icons-material/FileUpload';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import AboutBook from './AboutBook';
 import axios from 'axios';
+import { AuthContext } from '../Context/AuthContext';
+
 const faid = {
   filter: 'brightness(50%)',
 };
 
 export default function BookCard({ book, setAllBook, allBooks }) {
   const nBuyer = book?.borrowers.length;
+  const { user, isFetching, error, dispatch } = useContext(AuthContext);
   const [numberOfCopies, setNumberOfCopies] = useState(book.copies - nBuyer);
   const handlePurchase = async () => {
     setNumberOfCopies(--numberOfCopies);
@@ -65,17 +68,21 @@ export default function BookCard({ book, setAllBook, allBooks }) {
           <IconButton aria-label='add to favorites' onClick={handlePurchase}>
             <ShoppingCartIcon color='success' fontSize='large' />
           </IconButton>
-          <Link
-            to={`/updatebook/${book._id}`}
-            style={{ textDecoration: 'none' }}
-          >
-            <IconButton aria-label='add to favorites'>
-              <FileUploadIcon color='success' fontSize='large' />
+          {user.isAdmin && (
+            <Link
+              to={`/updatebook/${book._id}`}
+              style={{ textDecoration: 'none' }}
+            >
+              <IconButton aria-label='add to favorites'>
+                <FileUploadIcon color='success' fontSize='large' />
+              </IconButton>
+            </Link>
+          )}
+          {user.isAdmin && (
+            <IconButton aria-label='add to favorites' onClick={handleDelete}>
+              <DeleteIcon color='error' fontSize='large' />
             </IconButton>
-          </Link>
-          <IconButton aria-label='add to favorites' onClick={handleDelete}>
-            <DeleteIcon color='error' fontSize='large' />
-          </IconButton>
+          )}
         </CardActions>
       </Card>
     </div>

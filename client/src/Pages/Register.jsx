@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../Styles/Pages/_Login.scss';
 import { Button, Stack, TextField, Switch, Typography } from '@mui/material';
 
 function Register() {
-  const [checked, setChecked] = React.useState(true);
+  const [checked, setChecked] = useState(false);
 
   const handleChange = (event) => {
-    setChecked(event.target.checked);
+    setChecked((prev) => !prev);
   };
 
   return (
@@ -43,18 +43,12 @@ function Register() {
             type='password'
             autoComplete='current-password'
           />
-          <TextField
-            id='outlined-password-input'
-            label='Password'
-            type='password'
-            autoComplete='current-password'
-          />
+
           <Stack direction='row' spacing={2}>
             <Typography variant='button' display='block'>
               Member
             </Typography>
             <Switch
-              checked={checked}
               onChange={handleChange}
               inputProps={{ 'aria-label': 'controlled' }}
             />
@@ -62,9 +56,16 @@ function Register() {
               Admin
             </Typography>
           </Stack>
-
+          {checked && (
+            <TextField
+              id='outlined-password-input'
+              label='Special Password to make Admin Account'
+              type='password'
+              autoComplete='current-password'
+            />
+          )}
           <Button variant='contained' color='success'>
-            Success
+            Register
           </Button>
         </Stack>
       </div>

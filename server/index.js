@@ -6,9 +6,7 @@ const helmet = require('helmet');
 const morgan = require('morgan');
 const cors = require('cors');
 const userRoute = require('./routes/user');
-const auth = require('./middleware/auth');
 const bookRoute = require('./routes/book');
-
 const server = require('http').createServer(app);
 
 dotenv.config();
@@ -38,8 +36,6 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan('common'));
 app.use('/api/users', userRoute);
-//app.use("/api/user", usersRoute);
-//app.use("/api/auth", authRoute);
 app.use('/api/book', bookRoute);
 
 // Serve static assets if in production

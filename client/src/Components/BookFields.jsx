@@ -48,7 +48,7 @@ export default function BookFields({ book }) {
     <div className='bookFiledsConatiner'>
       <div className='bookFiledsWrapper'>
         <Typography variant='h4' mt={2} gutterBottom component='div'>
-          Add Book
+          {book ? 'Update book' : 'Add book'}
         </Typography>
         <Stack spacing={2}>
           <TextField

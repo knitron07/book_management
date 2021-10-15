@@ -12,14 +12,6 @@ function AddBook() {
       <Box component='main' sx={{ flexGrow: 1 }}>
         <Toolbar />
         <BookFields />
-
-        {/* <Snackbar
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-          open={open}
-          onClose={handleClose}
-          message='I love snacks'
-          key={vertical + horizontal}
-        /> */}
       </Box>
     </Box>
   );

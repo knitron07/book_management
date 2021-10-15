@@ -1,12 +1,11 @@
-const router = require("express").Router(),
-  Users = require("../models/User"),
-  bcrypt = require("bcrypt"),
-  jwt = require("jsonwebtoken"),
-  auth = require("../middleware/auth"),
-  cookieParser = require("cookie-parser");
+const router = require('express').Router(),
+  Users = require('../models/User'),
+  bcrypt = require('bcrypt'),
+  jwt = require('jsonwebtoken'),
+  cookieParser = require('cookie-parser');
 
 router.use(cookieParser());
-router.post("/register", async (req, res) => {
+router.post('/register', async (req, res) => {
   try {
     // generating hashed password
     const salt = await bcrypt.genSalt(10);
@@ -32,30 +31,23 @@ router.post("/register", async (req, res) => {
     console.log(error);
   }
 });
-router.get("/login", auth, (req, res) => {
-  console.log("done");
-});
-router.post("/login", async (req, res) => {
+
+router.post('/login', async (req, res) => {
   try {
-    let token;
     const userLogin = await Users.findOne({ username: req.body.username });
     if (userLogin) {
       const validPassword = await bcrypt.compare(
         req.body.password,
-        userLogin.password
+        userLogin.password,
       );
-      token = await userLogin.generateAuthToken();
-      console.log(token);
-      res.cookie("jwt", token, {
-        httpsOnly: true,
-      });
       if (!validPassword) {
-        res.status(400).json("wrong password");
+        res.status(400).json('wrong password');
       } else {
-        res.json({ message: "Signed in" });
+        const { password, ...others } = userLogin._doc;
+        res.json(others);
       }
     } else {
-      res.status(400).json("Invalid credentials");
+      res.status(400).json('Invalid credentials');
     }
   } catch (error) {
     res.status(500).json(error);
