@@ -39,7 +39,7 @@ export default function BookFields({ book }) {
     const name = e.target.name;
     console.log(name);
     try {
-      const res = await axios.post('book/addbook', bookData);
+      await axios.post('book/addbook', bookData);
       setBookData(InitialBookFiels);
     } catch (error) {
       console.log(error);
@@ -47,7 +47,7 @@ export default function BookFields({ book }) {
   };
   const handleUpdatebook = async (e) => {
     try {
-      const res = await axios.put(`/book/updatebook/${book._id}`, bookData);
+      await axios.put(`/book/updatebook/${book._id}`, bookData);
     } catch (error) {
       console.log(error);
     }
@@ -64,7 +64,7 @@ export default function BookFields({ book }) {
 
       setBookData(x);
     }
-  }, []);
+  }, [book]);
   return (
     <div className='bookFiledsConatiner'>
       <div className='bookFiledsWrapper'>
@@ -140,7 +140,9 @@ export default function BookFields({ book }) {
                 aria-label='add'
                 onClick={handleAddBook}
               >
-                <AddIcon />
+                <Typography variant='poster'>
+                  <AddIcon />
+                </Typography>
               </Fab>
             ) : (
               <IconButton
@@ -148,7 +150,7 @@ export default function BookFields({ book }) {
                 name='upload'
                 onClick={handleUpdatebook}
               >
-                <FileUploadIcon color='success' fontSize='large' />
+                <FileUploadIcon color='primary' fontSize='large' />
               </IconButton>
             )}
           </div>

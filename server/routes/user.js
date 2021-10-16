@@ -63,4 +63,12 @@ router.delete('/deleteaccount/:id', async (req, res) => {
     res.status(500).json(error);
   }
 });
+
+router.put('/update/:userId', async (req, res) => {
+  try {
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+});
 module.exports = router;

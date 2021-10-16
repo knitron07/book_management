@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+
 import { AuthContext } from '../Context/AuthContext.js';
 import {
   Box,
@@ -19,6 +20,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import PersonIcon from '@mui/icons-material/Person';
 import PersonOffIcon from '@mui/icons-material/PersonOff';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import axios from 'axios';
 
 const BookOptions = [
@@ -27,12 +29,19 @@ const BookOptions = [
 ];
 
 export default function SideBar() {
+  let history = useHistory();
   const { user } = useContext(AuthContext);
   const handleDelete = async () => {
     await axios.delete(`/users/deleteaccount/${user._id}`);
     localStorage.removeItem('user');
+    history.push('/');
+    window.location.reload();
   };
-
+  const handleSignout = () => {
+    localStorage.removeItem('user');
+    history.push('/');
+    window.location.reload();
+  };
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -42,7 +51,11 @@ export default function SideBar() {
       >
         <Toolbar>
           <Typography variant='h5' noWrap component='div'>
-            {user.isAdmin ? 'Admin Dashboard' : 'User Dashboard'}
+            {user.isAdmin ? (
+              <Typography variant='poster'>Admin Dashboard</Typography>
+            ) : (
+              <Typography variant='poster'>User Dashboard</Typography>
+            )}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -60,7 +73,7 @@ export default function SideBar() {
         <Toolbar />
         <Box sx={{ overflow: 'auto' }}>
           <List>
-            <Typography variant='h6' noWrap component='div'>
+            <Typography variant='h6' pl={2} noWrap component='div'>
               Books Section
             </Typography>
             {BookOptions.map((text, index) => (
@@ -86,7 +99,7 @@ export default function SideBar() {
           </List>
           <Divider />
           <List>
-            <Typography variant='h6' noWrap component='div'>
+            <Typography variant='h6' pl={2} noWrap component='div'>
               Profile
             </Typography>
             <Link to='/profile' style={{ textDecoration: 'none' }}>
@@ -103,6 +116,12 @@ export default function SideBar() {
                 <PersonOffIcon />
               </ListItemIcon>
               <ListItemText primary='DeleteAccount' />
+            </ListItem>
+            <ListItem button onClick={handleSignout}>
+              <ListItemIcon>
+                <ExitToAppIcon />
+              </ListItemIcon>
+              <ListItemText primary='Sign out' />
             </ListItem>
           </List>
         </Box>

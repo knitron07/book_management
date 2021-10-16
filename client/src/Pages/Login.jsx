@@ -7,7 +7,6 @@ import {
   Button,
   Stack,
   TextField,
-  Switch,
   Typography,
   CircularProgress,
 } from '@mui/material';
@@ -15,7 +14,7 @@ import {
 function Login() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const { user, isFetching, error, dispatch } = useContext(AuthContext);
+  const { isFetching, dispatch } = useContext(AuthContext);
 
   const handleChange = (event) => {
     if (event.target.name === 'password') {
@@ -54,11 +53,20 @@ function Login() {
             autoComplete='current-password'
             onChange={handleChange}
           />
-          <Button variant='contained' href='/register' color='success'>
-            {!isFetching ? 'Register' : <CircularProgress />}
+
+          <Button variant='contained' href='/register' color='primary'>
+            {!isFetching ? (
+              <Typography variant='poster'>Register</Typography>
+            ) : (
+              <CircularProgress />
+            )}
           </Button>
-          <Button variant='contained' onClick={handleSubmit} color='success'>
-            {!isFetching ? 'Login' : <CircularProgress />}
+          <Button variant='contained' onClick={handleSubmit} color='primary'>
+            {!isFetching ? (
+              <Typography variant='poster'>Login</Typography>
+            ) : (
+              <CircularProgress />
+            )}
           </Button>
         </Stack>
       </div>

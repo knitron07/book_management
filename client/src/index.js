@@ -5,12 +5,28 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { AuthContextProvider } from './Context/AuthContext';
-
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+const theme = createTheme({
+  palette: {
+    primary: {
+      // Purple and green play nicely together.
+      main: '#1abc9c',
+    },
+  },
+  typography: {
+    poster: {
+      color: 'white',
+    },
+    fontFamily: 'Montserrat',
+  },
+});
 ReactDOM.render(
   <React.StrictMode>
-    <AuthContextProvider>
-      <App />
-    </AuthContextProvider>
+    <ThemeProvider theme={theme}>
+      <AuthContextProvider>
+        <App />
+      </AuthContextProvider>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root'),
 );

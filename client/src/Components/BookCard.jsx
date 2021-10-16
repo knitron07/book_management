@@ -6,7 +6,6 @@ import {
   CardHeader,
   CardMedia,
   CardContent,
-  Avatar,
   Typography,
   CardActions,
   IconButton,
@@ -19,16 +18,12 @@ import AboutBook from './AboutBook';
 import axios from 'axios';
 import { AuthContext } from '../Context/AuthContext';
 
-const faid = {
-  filter: 'brightness(50%)',
-};
-
 export default function BookCard({ book, setAllBook, allBooks }) {
   const nBuyer = book?.borrowers.length;
   const { user } = useContext(AuthContext);
   const [numberOfCopies, setNumberOfCopies] = useState(book.copies - nBuyer);
   const handlePurchase = async () => {
-    setNumberOfCopies(--numberOfCopies);
+    setNumberOfCopies((prev) => --prev);
     try {
       // const res = axios.put();
     } catch (error) {}
@@ -36,7 +31,7 @@ export default function BookCard({ book, setAllBook, allBooks }) {
   const handleDelete = async () => {
     const bookId = book._id;
     try {
-      const res = await axios.delete(`/book/deletebook/${bookId}`);
+      await axios.delete(`/book/deletebook/${bookId}`);
       const AllBook = [];
       allBooks.forEach((singleBook) => {
         if (singleBook._id !== bookId) {
@@ -50,7 +45,7 @@ export default function BookCard({ book, setAllBook, allBooks }) {
     }
   };
   return (
-    <div className={numberOfCopies <= 0 ? faid : ''}>
+    <div className='card'>
       <Card sx={{ maxWidth: 350 }}>
         <CardHeader title={book?.name} subheader={book?.author} />
         <CardMedia

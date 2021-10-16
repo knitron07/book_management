@@ -3,7 +3,6 @@ import '../Styles/Components/_SearchFields.scss';
 import {
   Box,
   Toolbar,
-  TextField,
   Stack,
   Button,
   Typography,
@@ -176,9 +175,9 @@ function SearchFields() {
                 <Button
                   variant='contained'
                   onClick={handleSearch}
-                  endIcon={<SearchIcon />}
+                  endIcon={<SearchIcon sx={{ color: '#ffff' }} />}
                 >
-                  Search
+                  <Typography variant='poster'>Search</Typography>
                 </Button>
               </div>
             </Stack>

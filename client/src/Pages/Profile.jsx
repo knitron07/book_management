@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import '../Styles/Pages/_Profile.scss';
 import {
   Box,
@@ -11,8 +11,10 @@ import {
 } from '@mui/material';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import SideBar from '../Components/SideBar';
+import { AuthContext } from '../Context/AuthContext';
 
 export default function Profile() {
+  const { user } = useContext(AuthContext);
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
@@ -34,17 +36,20 @@ export default function Profile() {
                 label='First Name'
                 defaultValue='Hello Worl'
                 variant='outlined'
+                value={user.firstname}
               />
               <TextField
                 id='outlined-basic'
                 label='Last Name'
                 defaultValue='Hello Worl'
                 variant='outlined'
+                value={user.lastname}
               />
               <TextField
                 id='outlined-read-only-input'
                 label='Username'
                 defaultValue='Hello World'
+                value={user.username}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -53,13 +58,14 @@ export default function Profile() {
                 id='outlined-read-only-input'
                 label='Email'
                 defaultValue='Hello World'
+                value={user.email}
                 InputProps={{
                   readOnly: true,
                 }}
               />
               <div className='uploadButton'>
                 <IconButton aria-label='add to favorites'>
-                  <FileUploadIcon color='success' fontSize='large' />
+                  <FileUploadIcon color='primary' fontSize='large' />
                 </IconButton>
               </div>
             </Stack>

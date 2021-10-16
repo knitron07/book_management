@@ -1,4 +1,5 @@
 import React from 'react';
+import '../Styles/Components/_BookCatalogue.scss';
 import { Grid, Box } from '@mui/material';
 import BookCard from './BookCard';
 function BookCatalogue({ allBooks, setAllBook }) {

@@ -1,6 +1,6 @@
 import './_App.scss';
 import { useContext } from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Login from '../src/Pages/Login';
 import Register from './Pages/Register';
 import DashBoard from '../src/Pages/DashBoard';
@@ -18,9 +18,11 @@ function App() {
           <Route exact path='/' component={user ? DashBoard : Login} />
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />
-          <Route path='/updatebook/:bookid' component={UpdateBook} />
+          <Route path='/updatebook/:bookid'>
+            {user?.isAdmin && <UpdateBook />}
+          </Route>
           <Route path='/searchbook' component={SearchBook} />
-          <Route path='/addbook'>{user.isAdmin && <AddBook />}</Route>
+          <Route path='/addbook'>{user?.isAdmin && <AddBook />}</Route>
           <Route path='/profile' component={Profile} />
         </Switch>
       </Router>
