@@ -30,6 +30,9 @@ function Register() {
   return (
     <div className='LoginContainer'>
       <div className='LoginContainerWrapper'>
+        <Typography component='h4' variant='h4'>
+          Register
+        </Typography>
         <Stack direction='column' spacing={2}>
           <TextField
             id='outlined-password-input'

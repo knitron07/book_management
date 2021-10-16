@@ -10,6 +10,8 @@ import {
   FormControl,
   Select,
   IconButton,
+  Snackbar,
+  Alert,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import axios from 'axios';
@@ -30,7 +32,22 @@ const InitialBookFiels = {
   aboutBook: '',
 };
 export default function BookFields({ book }) {
+  const [snackStatus, setSnackStatus] = useState({
+    open: false,
+    msg: '',
+    severity: 'info',
+  });
+
   const [bookData, setBookData] = useState(InitialBookFiels);
+
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') return;
+    setSnackStatus((prev) => ({
+      ...prev,
+      open: false,
+    }));
+  };
+
   const handleChange = (event) => {
     const name = event.target.name;
     setBookData((prev) => ({ ...prev, [name]: event.target.value }));
@@ -41,15 +58,33 @@ export default function BookFields({ book }) {
     try {
       await axios.post('book/addbook', bookData);
       setBookData(InitialBookFiels);
+      setSnackStatus({
+        open: true,
+        msg: 'Book added!',
+        severity: 'success',
+      });
     } catch (error) {
-      console.log(error);
+      setSnackStatus({
+        open: true,
+        msg: error.message,
+        severity: 'error',
+      });
     }
   };
   const handleUpdatebook = async (e) => {
     try {
       await axios.put(`/book/updatebook/${book._id}`, bookData);
+      setSnackStatus({
+        open: true,
+        msg: 'Book updated!',
+        severity: 'success',
+      });
     } catch (error) {
-      console.log(error);
+      setSnackStatus({
+        open: true,
+        msg: error.message,
+        severity: 'error',
+      });
     }
   };
   useEffect(() => {
@@ -156,6 +191,20 @@ export default function BookFields({ book }) {
           </div>
         </Stack>
       </div>
+      <Snackbar
+        open={snackStatus.open}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        autoHideDuration={3000}
+        onClose={handleSnackbarClose}
+      >
+        <Alert
+          onClose={handleSnackbarClose}
+          variant='filled'
+          severity={snackStatus.severity}
+        >
+          {snackStatus.msg}
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

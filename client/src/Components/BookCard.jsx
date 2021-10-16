@@ -10,6 +10,8 @@ import {
   CardActions,
   IconButton,
   Chip,
+  Snackbar,
+  Alert,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
@@ -19,14 +21,42 @@ import axios from 'axios';
 import { AuthContext } from '../Context/AuthContext';
 
 export default function BookCard({ book, setAllBook, allBooks }) {
-  const nBuyer = book?.borrowers.length;
+  const [snackStatus, setSnackStatus] = useState({
+    open: false,
+    msg: '',
+    severity: 'info',
+  });
+
   const { user } = useContext(AuthContext);
-  const [numberOfCopies, setNumberOfCopies] = useState(book.copies - nBuyer);
+  const [numberOfCopies, setNumberOfCopies] = useState(book.copies);
+
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') return;
+    setSnackStatus((prev) => ({
+      ...prev,
+      open: false,
+    }));
+  };
+
   const handlePurchase = async () => {
+    const x = numberOfCopies - 1;
     setNumberOfCopies((prev) => --prev);
     try {
-      // const res = axios.put();
-    } catch (error) {}
+      await axios.put(`/book/purchase/${user._id}/${book._id}`, {
+        value: x,
+      });
+      setSnackStatus({
+        open: true,
+        msg: `Thank you for purchasing a book ${user.firstname}`,
+        severity: 'success',
+      });
+    } catch (error) {
+      setSnackStatus({
+        open: true,
+        msg: 'Book not purchase',
+        severity: 'error',
+      });
+    }
   };
   const handleDelete = async () => {
     const bookId = book._id;
@@ -40,8 +70,17 @@ export default function BookCard({ book, setAllBook, allBooks }) {
       });
       console.log(AllBook);
       setAllBook(AllBook);
+      setSnackStatus({
+        open: true,
+        msg: 'Book Deleted!',
+        severity: 'success',
+      });
     } catch (error) {
-      console.log(error);
+      setSnackStatus({
+        open: true,
+        msg: error.message,
+        severity: 'error',
+      });
     }
   };
   return (
@@ -81,6 +120,20 @@ export default function BookCard({ book, setAllBook, allBooks }) {
           )}
         </CardActions>
       </Card>
+      <Snackbar
+        open={snackStatus.open}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        autoHideDuration={3000}
+        onClose={handleSnackbarClose}
+      >
+        <Alert
+          onClose={handleSnackbarClose}
+          variant='filled'
+          severity={snackStatus.severity}
+        >
+          {snackStatus.msg}
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

@@ -24,7 +24,7 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import axios from 'axios';
 
 const BookOptions = [
-  { buttonName: 'View All', link: '/' },
+  { buttonName: 'View All', link: '/viewall' },
   { buttonName: 'search', link: '/searchbook' },
 ];
 
@@ -51,11 +51,13 @@ export default function SideBar() {
       >
         <Toolbar>
           <Typography variant='h5' noWrap component='div'>
-            {user.isAdmin ? (
-              <Typography variant='poster'>Admin Dashboard</Typography>
-            ) : (
-              <Typography variant='poster'>User Dashboard</Typography>
-            )}
+            <a href='/'>
+              {user.isAdmin ? (
+                <Typography variant='poster'>Admin Dashboard</Typography>
+              ) : (
+                <Typography variant='poster'>User Dashboard</Typography>
+              )}
+            </a>
           </Typography>
         </Toolbar>
       </AppBar>
@@ -77,7 +79,7 @@ export default function SideBar() {
               Books Section
             </Typography>
             {BookOptions.map((text, index) => (
-              <a href={text.link} style={{ textDecoration: 'none' }}>
+              <a href={text.link}>
                 <ListItem button key={text.buttonName}>
                   <ListItemIcon>
                     {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}

@@ -63,4 +63,20 @@ router.get('/', async (req, res) => {
     res.status(500).json(error);
   }
 });
+
+router.put('/purchase/:userId/:bookId', async (req, res) => {
+  try {
+    await Books.findByIdAndUpdate(req.params.bookId, {
+      $push: { borrowers: req.params.userId },
+      $set: { copies: req.body.value },
+    });
+    // await Books.findByIdAndUpdate(req.params.bookId, {
+    //  ,
+    // });
+    res.status(200).json('prchase');
+  } catch (error) {
+    console.log(error);
+    res.status(500).json('not prchase');
+  }
+});
 module.exports = router;

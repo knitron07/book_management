@@ -17,6 +17,9 @@ const theme = createTheme({
     poster: {
       color: 'white',
     },
+    black: {
+      color: 'black',
+    },
     fontFamily: 'Montserrat',
   },
 });

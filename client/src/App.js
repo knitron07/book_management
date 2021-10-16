@@ -9,6 +9,7 @@ import Profile from './Pages/Profile';
 import SearchBook from './Pages/SearchBook';
 import UpdateBook from './Pages/UpdateBook';
 import { AuthContext } from './Context/AuthContext';
+import ViewAll from './Pages/ViewAll';
 function App() {
   const { user } = useContext(AuthContext);
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route exact path='/' component={user ? DashBoard : Login} />
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />
+          <Route path='/viewall' component={ViewAll} />
           <Route path='/updatebook/:bookid'>
             {user?.isAdmin && <UpdateBook />}
           </Route>

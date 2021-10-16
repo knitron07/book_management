@@ -36,6 +36,9 @@ function Login() {
   return (
     <div className='LoginContainer'>
       <div className='LoginContainerWrapper'>
+        <Typography component='h4' variant='h4'>
+          Login
+        </Typography>
         <Stack direction='column' spacing={2}>
           <TextField
             id='outlined-password-input'
@@ -58,14 +61,14 @@ function Login() {
             {!isFetching ? (
               <Typography variant='poster'>Register</Typography>
             ) : (
-              <CircularProgress />
+              <CircularProgress size={24} />
             )}
           </Button>
           <Button variant='contained' onClick={handleSubmit} color='primary'>
             {!isFetching ? (
               <Typography variant='poster'>Login</Typography>
             ) : (
-              <CircularProgress />
+              <CircularProgress size={24} />
             )}
           </Button>
         </Stack>
