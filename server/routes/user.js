@@ -1,10 +1,7 @@
 const router = require('express').Router(),
   Users = require('../models/User'),
-  bcrypt = require('bcrypt'),
-  jwt = require('jsonwebtoken'),
-  cookieParser = require('cookie-parser');
+  bcrypt = require('bcrypt');
 
-router.use(cookieParser());
 router.post('/register', async (req, res) => {
   try {
     // generating hashed password
