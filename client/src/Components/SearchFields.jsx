@@ -60,7 +60,7 @@ function SearchFields() {
     const AllBooks = allBooks;
 
     AllBooks.forEach((singleBook) => {
-      if (singleBook.publishDate === event.target.value) {
+      if (singleBook.publishYear === event.target.value) {
         BookData.push(singleBook);
       }
     });

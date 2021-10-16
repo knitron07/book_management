@@ -15,8 +15,8 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@mui/material';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import SearchIcon from '@mui/icons-material/Search';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 import PersonIcon from '@mui/icons-material/Person';
 import PersonOffIcon from '@mui/icons-material/PersonOff';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
@@ -82,7 +82,7 @@ export default function SideBar() {
               <a href={text.link}>
                 <ListItem button key={text.buttonName}>
                   <ListItemIcon>
-                    {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                    {index % 2 === 0 ? <MenuBookIcon /> : <SearchIcon />}
                   </ListItemIcon>
                   <ListItemText primary={text.buttonName} />
                 </ListItem>

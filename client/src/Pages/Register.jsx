@@ -1,11 +1,33 @@
 import React, { useState } from 'react';
 import '../Styles/Pages/_Login.scss';
-import { Button, Stack, TextField, Switch, Typography } from '@mui/material';
+import {
+  Button,
+  Stack,
+  TextField,
+  Switch,
+  Typography,
+  Snackbar,
+  Alert,
+} from '@mui/material';
 import axios from 'axios';
 
 function Register() {
   const [checked, setChecked] = useState(true);
   const [register, setRegister] = useState({});
+
+  const [snackStatus, setSnackStatus] = useState({
+    open: false,
+    msg: '',
+    severity: 'info',
+  });
+  const handleSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') return;
+    setSnackStatus((prev) => ({
+      ...prev,
+      open: false,
+    }));
+  };
+
   const handleSwitch = (event) => {
     setChecked((prev) => !prev);
     setRegister((prev) => ({ ...prev, isAdmin: checked }));
@@ -23,8 +45,19 @@ function Register() {
       } else {
         await axios.post('/users/register', register);
       }
+
+      setSnackStatus({
+        open: true,
+        msg: 'Account Created!',
+        severity: 'success',
+      });
     } catch (error) {
       console.log(error);
+      setSnackStatus({
+        open: true,
+        msg: error.message,
+        severity: 'error',
+      });
     }
   };
   return (
@@ -102,6 +135,20 @@ function Register() {
           </Button>
         </Stack>
       </div>
+      <Snackbar
+        open={snackStatus.open}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+        autoHideDuration={3000}
+        onClose={handleSnackbarClose}
+      >
+        <Alert
+          onClose={handleSnackbarClose}
+          variant='filled'
+          severity={snackStatus.severity}
+        >
+          {snackStatus.msg}
+        </Alert>
+      </Snackbar>
     </div>
   );
 }
