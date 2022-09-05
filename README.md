@@ -1,3 +1,24 @@
+# Tech Stack
+MongoDB,Express.js,React.js,Node.js
+
+# Basic Freature
+1.	The portal supports the user-admin paradigm, where some functionalities are restricted to admin, and some are open for all.
+2.	Only An admin can delete, edit and add books with details like author name, year of publication, and the number of copies available.
+3.	Both admin and user can see the feed of all available books. Books can search by author name, year of publication, and name of the book.
+4.	A user can issue a book that would decrease the number of copies available.
+5.	User can edit their profile information and password.
+
+# Screenshots
+![Screenshot (15)](https://user-images.githubusercontent.com/62953713/188503666-8fb43488-047b-4836-a5f9-54481d8e3007.png)
+![Screenshot (16)](https://user-images.githubusercontent.com/62953713/188503668-f1798d81-2bd4-4700-b26b-284c89e53790.png)
+![Screenshot (18)](https://user-images.githubusercontent.com/62953713/188503670-5518487d-698b-4b3b-a6c7-01ea8ec097b3.png)
+![Screenshot (19)](https://user-images.githubusercontent.com/62953713/188503672-f00b35dc-d32c-4f12-985e-42fcca219ee4.png)
+![Screenshot (21)](https://user-images.githubusercontent.com/62953713/188503674-3bab97a2-666f-4d28-851e-4553c18c5fb4.png)
+![Screenshot (22)](https://user-images.githubusercontent.com/62953713/188503676-7033eff1-aa30-49ee-a7da-946713ab0408.png)
+![Screenshot (23)](https://user-images.githubusercontent.com/62953713/188503677-514c3a93-d0c1-4e62-ace6-806a56206711.png)
+![Screenshot (25)](https://user-images.githubusercontent.com/62953713/188503680-488d8438-831f-4697-a11f-8d02d1f16e08.png)
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -39,32 +60,4 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
