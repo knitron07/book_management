@@ -2,6 +2,7 @@
 MongoDB,Express.js,React.js,Node.js
 
 # Basic Freature
+Created a web application portal for book management. Following are its basic functionalities:
 1.	The portal supports the user-admin paradigm, where some functionalities are restricted to admin, and some are open for all.
 2.	Only An admin can delete, edit and add books with details like author name, year of publication, and the number of copies available.
 3.	Both admin and user can see the feed of all available books. Books can search by author name, year of publication, and name of the book.
